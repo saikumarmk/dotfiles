@@ -1,0 +1,25 @@
+# Linux-specific keybinds
+# Uses Ctrl for tab management (standard Linux terminal convention)
+# Super+drag to move window (KDE/KWin), no titlebar needed
+
+# Quick terminal toggle (grave_accent = backtick)
+keybind = global:grave_accent=toggle_quick_terminal
+keybind = backquote=unbind
+keybind = shift+backquote=unbind
+keybind = backquote=text:\x60
+keybind = shift+backquote=text:\x7e
+
+# Tab switching: Ctrl+1 through Ctrl+9
+keybind = ctrl+1=goto_tab:1
+keybind = ctrl+2=goto_tab:2
+keybind = ctrl+3=goto_tab:3
+keybind = ctrl+4=goto_tab:4
+keybind = ctrl+5=goto_tab:5
+keybind = ctrl+6=goto_tab:6
+keybind = ctrl+7=goto_tab:7
+keybind = ctrl+8=goto_tab:8
+keybind = ctrl+9=goto_tab:9
+
+# New tab / close tab
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_tab:this

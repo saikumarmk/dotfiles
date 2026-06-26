@@ -1,0 +1,49 @@
+# Ghostty configuration
+# Reload with: Ctrl+Shift+,
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+
+# Theme (matches nvim rose-pine)
+theme = Rose Pine
+
+# Window
+background-opacity = 0.95
+window-decoration = false
+window-padding-x = 8
+window-padding-y = 6
+window-show-tab-bar = never
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Scrollback
+scrollback-limit = 50000000
+
+# Mouse
+mouse-hide-while-typing = true
+focus-follows-mouse = true
+
+# Copy/paste
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# QoL
+resize-overlay = never
+confirm-close-surface = false
+
+# Quick Terminal (Quake mode)
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-animation-duration = 0.15
+quick-terminal-autohide = true
+
+# Platform-specific keybinds (symlinked by install.sh)
+config-file = ~/.config/ghostty/config-platform
