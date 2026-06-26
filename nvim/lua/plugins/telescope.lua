@@ -18,8 +18,12 @@ return {
 
     telescope.setup({
       defaults = {
-        prompt_prefix = "  ",
-        selection_caret = " ",
+        -- Disable treesitter in previewer to avoid ft_to_lang API mismatch
+        preview = {
+          treesitter = false,
+        },
+        prompt_prefix = "  ",
+        selection_caret = " ",
         path_display = { "smart" },
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
@@ -31,9 +35,9 @@ return {
         },
         border = true,
         borderchars = {
-          prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-          results = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+          prompt  = { "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x95\xad", "\xe2\x95\xae", "\xe2\x95\xaf", "\xe2\x95\xb0" },
+          results = { "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x95\xad", "\xe2\x95\xae", "\xe2\x95\xaf", "\xe2\x95\xb0" },
+          preview = { "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x94\x80", "\xe2\x94\x82", "\xe2\x95\xad", "\xe2\x95\xae", "\xe2\x95\xaf", "\xe2\x95\xb0" },
         },
         file_ignore_patterns = {
           "node_modules",
@@ -63,10 +67,8 @@ return {
       },
     })
 
-    -- Load extensions
     telescope.load_extension("fzf")
 
-    -- Keymaps
     local keymap = vim.keymap.set
     local opts = { noremap = true, silent = true }
 
