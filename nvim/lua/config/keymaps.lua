@@ -44,8 +44,9 @@ keymap("n", "<leader>h", ":nohlsearch<CR>", opts)
 -- Save file
 keymap("n", "<leader>w", ":w<CR>", opts)
 
--- Quit
-keymap("n", "<leader>q", ":q<CR>", opts)
+-- Close current window/split (<leader>q is reserved for Quarto group)
+keymap("n", "<leader>wq", ":q<CR>", opts)
+keymap("n", "<leader>ww", "<C-w>q", opts)
 
 -- Save and quit
 keymap("n", "<leader>x", ":wq<CR>", opts)

@@ -186,13 +186,14 @@ return {
       -- Register leader key descriptions
       wk.add({
         { "<leader>b", group = "Buffer" },
+        { "<leader>w", group = "Window" },
         { "<leader>c", group = "Copilot" },
         { "<leader>d", group = "Debug" },
         { "<leader>dp", group = "Debug Python" },
         { "<leader>f", group = "Find (Telescope)" },
         { "<leader>g", group = "Git" },
         { "<leader>gt", group = "Git Toggle" },
-        { "<leader>l", group = "LSP" },
+        { "<leader>l", group = "LSP / Format" },
         { "<leader>m", group = "Molten/Markdown" },
         { "<leader>q", group = "Quarto" },
         { "<leader>r", group = "Run/Code" },
