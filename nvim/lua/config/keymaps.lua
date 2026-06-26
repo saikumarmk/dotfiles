@@ -21,6 +21,11 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Close current buffer (keeps the window layout intact)
+keymap("n", "<leader>bd", ":bdelete<CR>", opts)
+-- Close buffer and force-discard unsaved changes
+keymap("n", "<leader>bD", ":bdelete!<CR>", opts)
+
 -- Better indenting in visual mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
