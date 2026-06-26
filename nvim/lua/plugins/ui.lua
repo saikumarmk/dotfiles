@@ -3,7 +3,7 @@
 -- ===================================================================
 
 return {
-  -- Start screen inspired by alpha/NvChad dashboards
+  -- Start screen
   {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -13,26 +13,58 @@ return {
       local dashboard = require("alpha.themes.dashboard")
 
       dashboard.section.header.val = {
-        "                                                    ",
-        "   ███╗   ██╗██╗   ██╗██╗███╗   ███╗              ",
-        "   ████╗  ██║██║   ██║██║████╗ ████║              ",
-        "   ██╔██╗ ██║██║   ██║██║██╔████╔██║              ",
-        "   ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║              ",
-        "   ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║              ",
-        "   ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝              ",
-        "                                                    ",
+        "",
+        "   \xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x97\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x97\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97   \xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97",
+        "   \xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97  \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97 \xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91",
+        "   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97 \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91",
+        "   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x95\x9a\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x95\x9a\xe2\x96\x88\xe2\x96\x88\xe2\x95\x97 \xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x95\x9a\xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91",
+        "   \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91 \xe2\x95\x9a\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91 \xe2\x95\x9a\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x96\x88\xe2\x95\x94\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91\xe2\x96\x88\xe2\x96\x88\xe2\x95\x91 \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x9d \xe2\x96\x88\xe2\x96\x88\xe2\x95\x91",
+        "   \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x9d  \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d  \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x9d\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x9d     \xe2\x95\x9a\xe2\x95\x90\xe2\x95\x9d",
+        "",
       }
+      dashboard.section.header.opts.hl = "AlphaHeader"
 
       dashboard.section.buttons.val = {
-        dashboard.button("f", "  Find file", "<cmd>Telescope find_files<cr>"),
-        dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
-        dashboard.button("g", "  Live grep", "<cmd>Telescope live_grep<cr>"),
-        dashboard.button("e", "  File explorer", "<cmd>Neotree toggle<cr>"),
-        dashboard.button("l", "󰒲  Lazy", "<cmd>Lazy<cr>"),
-        dashboard.button("q", "  Quit", "<cmd>qa<cr>"),
+        dashboard.button("f", "  Find file",     "<cmd>Telescope find_files<cr>"),
+        dashboard.button("r", "  Recent files",  "<cmd>Telescope oldfiles<cr>"),
+        dashboard.button("g", "  Live grep",     "<cmd>Telescope live_grep<cr>"),
+        dashboard.button("e", "  File explorer", "<cmd>Neotree toggle<cr>"),
+        dashboard.button("l", "  Lazy",          "<cmd>Lazy<cr>"),
+        dashboard.button("q", "  Quit",          "<cmd>qa<cr>"),
       }
 
-      dashboard.section.footer.val = "Cyberdream • OCaml-ready • " .. os.date("%A %d %b")
+      local ref = {
+        type = "text",
+        val = {
+          "  Navigation                      Editing",
+          "  SPC f f  find files             SPC l f  format (ruff)",
+          "  SPC f g  live grep              SPC l o  symbol outline",
+          "  SPC b d  close buffer           SPC c a  code actions",
+          "  SPC w q  close split            SPC r n  rename symbol",
+          "  S-h / S-l  prev/next buffer     j k      escape insert",
+          "  ] s / [ s  next/prev symbol     SPC d b  breakpoint",
+          "",
+          "  Git                             Terminal",
+          "  SPC g g  lazygit               C-\\     toggle terminal",
+          "  SPC g s  stage hunk             SPC t p  python REPL",
+          "  SPC g p  preview hunk           SPC d c  start debugger",
+        },
+        opts = { position = "center", hl = "Comment" },
+      }
+
+      dashboard.section.footer.val = os.date("  %A %d %b  %H:%M")
+      dashboard.section.footer.opts.hl = "AlphaFooter"
+
+      dashboard.config.layout = {
+        { type = "padding", val = 2 },
+        dashboard.section.header,
+        { type = "padding", val = 1 },
+        dashboard.section.buttons,
+        { type = "padding", val = 1 },
+        ref,
+        { type = "padding", val = 1 },
+        dashboard.section.footer,
+      }
 
       dashboard.config.opts.noautocmd = true
       alpha.setup(dashboard.config)
@@ -47,15 +79,15 @@ return {
       require("lualine").setup({
         options = {
           theme = "auto",
-          component_separators = { left = "│", right = "│" },
-          section_separators = { left = "", right = "" },
+          component_separators = { left = "|", right = "|" },
+          section_separators = { left = "", right = "" },
           globalstatus = true,
           disabled_filetypes = {
             statusline = { "alpha" },
           },
         },
         sections = {
-          lualine_a = { { "mode", icon = "" } },
+          lualine_a = { "mode" },
           lualine_b = { "branch", "diff" },
           lualine_c = { { "filename", path = 1 } },
           lualine_x = { "diagnostics", "encoding", "fileformat", "filetype" },
@@ -80,15 +112,12 @@ return {
           right_mouse_command = "bdelete! %d",
           left_mouse_command = "buffer %d",
           middle_mouse_command = nil,
-          indicator = {
-            style = "icon",
-            icon = "▎",
-          },
+          indicator = { style = "icon", icon = "\xe2\x96\x8e" },
           buffer_close_icon = "",
-          modified_icon = "●",
-          close_icon = "",
-          left_trunc_marker = "",
-          right_trunc_marker = "",
+          modified_icon = "\xe2\x97\x8f",
+          close_icon = "",
+          left_trunc_marker = "",
+          right_trunc_marker = "",
           diagnostics = "nvim_lsp",
           diagnostics_indicator = function(count, level)
             local icon = level:match("error") and " " or " "
@@ -100,7 +129,7 @@ return {
               text = "File Explorer",
               text_align = "center",
               separator = true,
-            }
+            },
           },
           color_icons = true,
           show_buffer_icons = true,
@@ -125,9 +154,7 @@ return {
     main = "ibl",
     config = function()
       require("ibl").setup({
-        indent = {
-          char = "│",
-        },
+        indent = { char = "\xe2\x94\x82" },
         scope = {
           enabled = true,
           show_start = true,
@@ -138,7 +165,7 @@ return {
     end,
   },
 
-  -- Smooth scroll from the aesthetic setup reference
+  -- Smooth scroll
   {
     "karb94/neoscroll.nvim",
     event = "VeryLazy",
@@ -167,10 +194,7 @@ return {
         plugins = {
           marks = true,
           registers = true,
-          spelling = {
-            enabled = true,
-            suggestions = 20,
-          },
+          spelling = { enabled = true, suggestions = 20 },
           presets = {
             operators = true,
             motions = true,
@@ -183,22 +207,21 @@ return {
         },
       })
 
-      -- Register leader key descriptions
       wk.add({
-        { "<leader>b", group = "Buffer" },
-        { "<leader>w", group = "Window" },
-        { "<leader>c", group = "Copilot" },
-        { "<leader>d", group = "Debug" },
+        { "<leader>b",  group = "Buffer" },
+        { "<leader>w",  group = "Window" },
+        { "<leader>c",  group = "Copilot" },
+        { "<leader>d",  group = "Debug" },
         { "<leader>dp", group = "Debug Python" },
-        { "<leader>f", group = "Find (Telescope)" },
-        { "<leader>g", group = "Git" },
+        { "<leader>f",  group = "Find (Telescope)" },
+        { "<leader>g",  group = "Git" },
         { "<leader>gt", group = "Git Toggle" },
-        { "<leader>l", group = "LSP / Format" },
-        { "<leader>m", group = "Molten/Markdown" },
-        { "<leader>q", group = "Quarto" },
-        { "<leader>r", group = "Run/Code" },
-        { "<leader>s", group = "Split" },
-        { "<leader>t", group = "Terminal" },
+        { "<leader>l",  group = "LSP / Format" },
+        { "<leader>m",  group = "Molten/Markdown" },
+        { "<leader>q",  group = "Quarto" },
+        { "<leader>r",  group = "Run/Code" },
+        { "<leader>s",  group = "Split" },
+        { "<leader>t",  group = "Terminal" },
       })
     end,
   },
@@ -223,15 +246,15 @@ return {
           DEBUG = "",
           ERROR = "",
           INFO = "",
-          TRACE = "✎",
-          WARN = ""
+          TRACE = "\xe2\x9c\x8e",
+          WARN = "",
         },
         level = 2,
         minimum_width = 50,
         render = "default",
         stages = "fade_in_slide_out",
         timeout = 5000,
-        top_down = true
+        top_down = true,
       })
       vim.notify = require("notify")
     end,
@@ -302,8 +325,6 @@ return {
           javascript = { "template_string" },
         },
       })
-
-      -- Integration with nvim-cmp
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
