@@ -23,27 +23,34 @@ info "Detected OS: $OS"
 # ── Package installation ──────────────────────────────────────────────────────
 
 install_linux() {
-  # Prefer yay (AUR) so we get ghostty; fall back to pacman for base packages
   local aur=""
-  if has yay; then
-    aur=yay
-  elif has paru; then
-    aur=paru
-  fi
+  if has yay; then aur=yay; elif has paru; then aur=paru; fi
 
-  info "Installing packages (pacman)..."
-  sudo pacman -Syu --needed --noconfirm \
-    neovim git base-devel nodejs npm python python-pip \
-    ttf-jetbrains-mono-nerd
-
-  if [[ -n "$aur" ]]; then
-    info "Installing AUR packages ($aur)..."
-    $aur -S --needed --noconfirm ghostty
+  # Only run pacman for packages that are actually missing
+  local pkgs=()
+  for pkg in neovim git base-devel nodejs npm python python-pip ttf-jetbrains-mono-nerd; do
+    if ! pacman -Qi "$pkg" &>/dev/null; then
+      pkgs+=("$pkg")
+    fi
+  done
+  if [[ ${#pkgs[@]} -gt 0 ]]; then
+    info "Installing via pacman: ${pkgs[*]}"
+    sudo pacman -S --needed --noconfirm "${pkgs[@]}"
   else
-    warn "No AUR helper found (yay/paru). Install ghostty manually: https://ghostty.org"
+    info "All pacman packages already installed, skipping."
   fi
 
-  # ruff via uv (faster than pip, version-managed)
+  if ! has ghostty; then
+    if [[ -n "$aur" ]]; then
+      info "Installing ghostty via $aur..."
+      $aur -S --needed --noconfirm ghostty
+    else
+      warn "No AUR helper found (yay/paru). Install ghostty manually: https://ghostty.org"
+    fi
+  else
+    info "ghostty already installed, skipping."
+  fi
+
   if ! has ruff; then
     if has uv; then
       info "Installing ruff via uv..."
@@ -53,6 +60,8 @@ install_linux() {
       curl -LsSf https://astral.sh/uv/install.sh | sh
       "$HOME/.local/bin/uv" tool install ruff
     fi
+  else
+    info "ruff already installed, skipping."
   fi
 }
 
@@ -60,11 +69,27 @@ install_macos() {
   if ! has brew; then
     info "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    info "Homebrew already installed, skipping."
   fi
 
-  info "Installing packages (brew)..."
-  brew install neovim git node python
-  brew install --cask ghostty font-jetbrains-mono-nerd-font
+  for pkg in neovim git node python; do
+    if brew list "$pkg" &>/dev/null; then
+      info "$pkg already installed, skipping."
+    else
+      info "Installing $pkg..."
+      brew install "$pkg"
+    fi
+  done
+
+  for cask in ghostty font-jetbrains-mono-nerd-font; do
+    if brew list --cask "$cask" &>/dev/null; then
+      info "$cask already installed, skipping."
+    else
+      info "Installing $cask..."
+      brew install --cask "$cask"
+    fi
+  done
 
   if ! has ruff; then
     if has uv; then
@@ -73,6 +98,8 @@ install_macos() {
       brew install uv
       uv tool install ruff
     fi
+  else
+    info "ruff already installed, skipping."
   fi
 }
 
