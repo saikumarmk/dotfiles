@@ -79,5 +79,29 @@ return {
     keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
     keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
     keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
+
+    -- PDF browser: find PDFs and open in Zathura (Linux) or system viewer (macOS)
+    local open_cmd = vim.fn.has("mac") == 1 and "open" or "zathura"
+    keymap("n", "<leader>fp", function()
+      require("telescope.builtin").find_files({
+        prompt_title = "Open PDF",
+        find_command = { "fd", "--type", "f", "-e", "pdf" },
+        attach_mappings = function(_, map)
+          local actions = require("telescope.actions")
+          local state   = require("telescope.actions.state")
+          map("i", "<CR>", function(bufnr)
+            local sel = state.get_selected_entry()
+            actions.close(bufnr)
+            vim.fn.jobstart({ open_cmd, sel.path }, { detach = true })
+          end)
+          map("n", "<CR>", function(bufnr)
+            local sel = state.get_selected_entry()
+            actions.close(bufnr)
+            vim.fn.jobstart({ open_cmd, sel.path }, { detach = true })
+          end)
+          return true
+        end,
+      })
+    end, { desc = "Find PDFs" })
   end,
 }

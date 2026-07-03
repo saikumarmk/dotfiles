@@ -28,7 +28,7 @@ install_linux() {
 
   # Only run pacman for packages that are actually missing
   local pkgs=()
-  for pkg in neovim git base-devel nodejs npm python python-pip ttf-jetbrains-mono-nerd; do
+  for pkg in neovim git base-devel nodejs npm python python-pip ttf-jetbrains-mono-nerd zathura zathura-pdf-mupdf fd; do
     if ! pacman -Qi "$pkg" &>/dev/null; then
       pkgs+=("$pkg")
     fi
@@ -73,7 +73,7 @@ install_macos() {
     info "Homebrew already installed, skipping."
   fi
 
-  for pkg in neovim git node python; do
+  for pkg in neovim git node python fd; do
     if brew list "$pkg" &>/dev/null; then
       info "$pkg already installed, skipping."
     else

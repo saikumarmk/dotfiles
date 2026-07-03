@@ -38,6 +38,7 @@ return {
         val = {
           "  Navigation                      Editing",
           "  SPC f f  find files             SPC l f  format (ruff)",
+          "  SPC f p  find & open PDFs       SPC l v  view compiled PDF",
           "  SPC f g  live grep              SPC l o  symbol outline",
           "  SPC b d  close buffer           SPC c a  code actions",
           "  SPC w q  close split            SPC r n  rename symbol",

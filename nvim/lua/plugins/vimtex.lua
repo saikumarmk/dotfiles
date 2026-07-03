@@ -88,6 +88,14 @@ return {
           map("<leader>lc", "<cmd>VimtexClean<cr>",          "LaTeX clean aux files")
           map("<leader>lC", "<cmd>VimtexClean!<cr>",         "LaTeX clean all output")
           map("<leader>lx", "<cmd>VimtexReload<cr>",         "LaTeX reload plugin")
+
+          -- Spell check (from Castel's workflow)
+          -- Enable spell checking for tex buffers
+          vim.opt_local.spell = true
+          vim.opt_local.spelllang = { "en_gb" }
+          -- <C-l> in insert mode: fix previous spelling mistake without breaking flow
+          vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u",
+            { buffer = true, silent = true, desc = "Fix previous spelling mistake" })
         end,
       })
     end,
