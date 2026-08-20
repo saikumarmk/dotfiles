@@ -31,7 +31,7 @@ Press `Space` and pause to see available bindings (which-key).
 | `K` | Hover docs |
 | `<leader>ca` | Code actions |
 | `<leader>rn` | Rename |
-| `<leader>lf` | Format (conform/ruff) |
+| `<leader>lf` | Format (conform; clang-format for C, ruff for Python, etc.) |
 | `[d` / `]d` | Previous / next diagnostic |
 | `<leader>d` | Diagnostic float |
 

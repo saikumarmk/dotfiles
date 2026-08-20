@@ -18,6 +18,7 @@
 -- - cssls: CSS
 -- - tailwindcss: Tailwind CSS
 -- - eslint: JS/TS linting diagnostics
+-- - clangd: C / C++
 -- - ocamllsp: OCaml / Reason / Dune
 -- - r_language_server: R (optional, manual install required)
 --
@@ -64,6 +65,7 @@ return {
           "cssls",          -- CSS
           "tailwindcss",    -- Tailwind CSS
           "eslint",         -- JS/TS linting diagnostics
+          "clangd",         -- C / C++
         },
         automatic_installation = true,
       })
@@ -231,6 +233,23 @@ return {
         capabilities = capabilities,
       }
 
+      -- C / C++
+      vim.lsp.config.clangd = {
+        cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        root_markers = {
+          ".clangd",
+          ".clang-tidy",
+          ".clang-format",
+          "compile_commands.json",
+          "compile_flags.txt",
+          "configure.ac",
+          "Makefile",
+          ".git",
+        },
+        capabilities = capabilities,
+      }
+
       -- OCaml / Reason / Dune (install with: opam install ocaml-lsp-server)
       --
       -- GUI Neovim often lacks `eval $(opam env)`. Spawning `ocamllsp` by absolute path
@@ -328,6 +347,7 @@ return {
           "python", "lua", "markdown", "json", "jsonc", "yaml", "sh", "bash", "r", "rmd",
           "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte",
           "html", "css", "scss", "less",
+          "c", "cpp", "objc", "objcpp", "cuda", "proto",
           "ocaml", "ocamlinterface", "ocamllex", "menhir", "reason", "dune",
         },
         callback = function(args)
@@ -358,6 +378,12 @@ return {
             css = "cssls",
             scss = "cssls",
             less = "cssls",
+            c = "clangd",
+            cpp = "clangd",
+            objc = "clangd",
+            objcpp = "clangd",
+            cuda = "clangd",
+            proto = "clangd",
             ocaml = "ocamllsp",
             ocamlinterface = "ocamllsp",
             ocamllex = "ocamllsp",

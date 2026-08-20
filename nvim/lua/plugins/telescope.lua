@@ -79,6 +79,7 @@ return {
     keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
     keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
     keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
+    keymap("n", "<leader>fs", ":Telescope lsp_document_symbols<CR>", opts)
 
     -- PDF browser: find PDFs and open in Zathura (Linux) or system viewer (macOS)
     local open_cmd = vim.fn.has("mac") == 1 and "open" or "zathura"
